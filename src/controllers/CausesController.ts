@@ -15,12 +15,12 @@ export default class CausesController {
   async list(request: Request, response: Response) {
     try {
       // Get all causes from de database
-      const todos = await db.select().from<Cause[]>("causes");
+      const causes = await db.select().from<Cause[]>("causes");
 
       // Return all the todos in a JSON format
-      return response.json(todos);
+      return response.json(causes);
     } catch (error) {
-      return response.status(500).send("Error while fetching todos");
+      return response.status(500).send("Error while fetching cause");
     }
   }
   async create(request: Request, response: Response) {
@@ -52,7 +52,7 @@ export default class CausesController {
     } catch (error) {
       // Rollback if something when wrong
       await trx.rollback();
-      return response.status(401).send("Error while creating a new todo");
+      return response.status(401).send("Error while creating a new cause");
     }
     return response.status(201).json(cause);
   }
@@ -63,7 +63,7 @@ export default class CausesController {
     } catch (error) {
       console.log(error);
 
-      return response.status(401).send("Error while deleting a new todo");
+      return response.status(401).send("Error while deleting a cause");
     }
     return response.status(204).send();
   }

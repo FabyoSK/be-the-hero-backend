@@ -4,9 +4,10 @@ export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable("organizations", (table) => {
     table.string("id").primary();
     table.string("name").notNullable();
+    table.string("email").notNullable();
     table.string("whatsApp").notNullable();
     table.string("city").notNullable();
-    table.string("ul").notNullable();
+    table.string("uf").notNullable();
   });
 }
 
