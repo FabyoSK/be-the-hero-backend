@@ -5,6 +5,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string("id").primary();
     table.string("name").notNullable();
     table.string("description").notNullable();
+    table.decimal("value").notNullable();
 
     table
       .string("organization_id")
@@ -13,6 +14,8 @@ export async function up(knex: Knex): Promise<void> {
       .inTable("organizations")
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
+
+    table.string("organization_name").notNullable();
   });
 }
 
